@@ -18,8 +18,7 @@ class App extends Component {
     .then(r => r.json())
     .then(result => {
       this.setState({
-        categories: result.categories,
-        filteredCategories: result.categories
+        categories: result.categories
       })
     })
   }
