@@ -1,65 +1,54 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import { Row, Col } from "react-materialize";
+import React, {Component} from "react";
+import {Row, Col} from "react-materialize";
 import Header from "./components/Header";
 import CategoryContainer from './components/CategoryContainer';
 
+const baseURL = "https://www.themealdb.com/api/json/v1/1"
 class App extends Component {
   state = {
     categories: [],
-    currentCategory: 0
+    currentCategory: '',
+    recipes: [],
   };
+
   componentDidMount() {
-    fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
-      .then(res => res.json())
-      .then(obj => this.setState({ categories: obj.categories }));
+    fetch(`${baseURL}/categories.php`).then(res => res.json()).then(obj => this.setState({categories: obj.categories}));
   }
 
   updateCurrentCategory = (event) => {
-
-  }
-=======
-import React, { Component } from 'react'
-import { Row, Col } from 'react-materialize'
-import Header from './components/Header'
-import CategoryContainer from './components/CategoryContainer';
-
-class App extends Component {
-
-  state = {
-    categories: []
+    console.log(event.target.name)
+    this.setState({
+      currentCategory: event.target.name.toLowerCase()
+    }, () => {
+          fetch(`${baseURL}/filter.php?c=${this.state.currentCategory}`)
+          .then(res => res.json())
+          .then(obj => this.setState({ recipes: obj.meals }))
+    });
   }
 
-  
-
->>>>>>> 18be2353fb9d76fc1cd49547f2923ac9cdeef698
   render() {
-    return (
-      <div>
-        <Header />
+    return (<div>
+      <Header/>
 
-        <Row>
-          <Col s={4} className="grid-example">
-            <h4>Categories</h4>
-<<<<<<< HEAD
-            <CategoryContainer categories={this.state.categories} updateCategory={this.updateCurrentCategory} />
-=======
-            <CategoryContainer categories={this.state.categories}/>
->>>>>>> 18be2353fb9d76fc1cd49547f2923ac9cdeef698
-          </Col>
+      <Row>
+        <Col s={4} className="grid-example">
+          <h4>Categories</h4>
 
-          <Col s={4} className="grid-example">
-            <h4>Recipes</h4>
-            {/* how can we render recipes here? */}
-          </Col>
+          <CategoryContainer categories={this.state.categories} updateCategory={this.updateCurrentCategory}/>
 
-          <Col s={4} className="grid-example">
-            <h4>My Recipes</h4>
-            {/* how can we render recipes here? */}
-          </Col>
-        </Row>
-      </div>
-    );
+        </Col>
+
+        <Col s={4} className="grid-example">
+          <h4>Recipes</h4>
+          {/* how can we render recipes here? */}
+        </Col>
+
+        <Col s={4} className="grid-example">
+          <h4>My Recipes</h4>
+          {/* how can we render recipes here? */}
+        </Col>
+      </Row>
+    </div>);
   }
 }
 
