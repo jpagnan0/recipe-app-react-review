@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import { Row, Col } from "react-materialize";
 import Header from "./components/Header";
@@ -17,6 +18,21 @@ class App extends Component {
   updateCurrentCategory = (event) => {
 
   }
+=======
+import React, { Component } from 'react'
+import { Row, Col } from 'react-materialize'
+import Header from './components/Header'
+import CategoryContainer from './components/CategoryContainer';
+
+class App extends Component {
+
+  state = {
+    categories: []
+  }
+
+  
+
+>>>>>>> 18be2353fb9d76fc1cd49547f2923ac9cdeef698
   render() {
     return (
       <div>
@@ -25,7 +41,11 @@ class App extends Component {
         <Row>
           <Col s={4} className="grid-example">
             <h4>Categories</h4>
+<<<<<<< HEAD
             <CategoryContainer categories={this.state.categories} updateCategory={this.updateCurrentCategory} />
+=======
+            <CategoryContainer categories={this.state.categories}/>
+>>>>>>> 18be2353fb9d76fc1cd49547f2923ac9cdeef698
           </Col>
 
           <Col s={4} className="grid-example">
