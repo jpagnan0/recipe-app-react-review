@@ -1,18 +1,28 @@
-import React from 'react'
-import { Card, CardTitle, Button } from 'react-materialize'
-import v4 from 'uuid'
+import React from "react";
+import { Card, CardTitle, Button } from "react-materialize";
+import v4 from "uuid";
 
-const Category = (props) => {
+const Category = props => {
+  // console.log(props);
+  const handleClick = event => {
+    props.updateCategory(event)
+    // console.log(event)
+  }
+  // const { idCategory, strCategory, strCategoryThumb, strCategoryDescription } = props
   return (
     <Card
       key={v4()}
-      header={<CardTitle key={v4()} image={/* category image here */} />}
-      title={/* category name here */}
-      actions={[<Button key={v4()} onClick={/* fetch for recipes */} waves='light'>Find Recipes</Button>]}
-    >
-      {/* category description here */}
-    </Card>
-  )
-}
+      header={<CardTitle key={v4()} image={props.category.strCategoryThumb} />}
+      title={props.category.strCategory}
+      actions=
+      {[
+        <Button name={props.category.strCategory} key={v4()} onClick={handleClick} waves="light">
+          Find Recipes
+        </Button>
+      ]}>
+      {props.category.strCategoryDescription}
+      </Card>
+  );
+};
 
-export default Category
+export default Category;
